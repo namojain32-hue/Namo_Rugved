@@ -1,0 +1,44 @@
+#Q1:
+def check(a, b, c):
+    return a and b and c
+
+
+#Q2:
+s = input("Enter a string: ")
+sorted_s = ''.join(sorted(s))
+print("Sorted string:", sorted_s)
+
+counts = {}
+for ch in s:
+    counts[ch] = counts.get(ch, 0) + 1
+
+for ch in sorted(counts):
+    print(ch, ":", counts[ch])
+
+
+#Q3
+s = input("Enter a number to check if it's a hill number: ")
+def check_hill(s):
+    if len(s) < 3:
+        return False
+    
+    i = 0
+
+    while i < len(s) - 1 and s[i] < s[i+1]:
+        i += 1
+        
+    if i == 0 or i == len(s) - 1:
+        return False
+        
+    while i < len(s) - 1 and s[i] > s[i+1]:
+        i += 1
+        
+    return i == len(s) - 1
+
+if check_hill(s):
+    print(f"{s} is a Hill Number!")
+else:
+    print(f"{s} is NOT a Hill Number.")
+
+
+#Q4
