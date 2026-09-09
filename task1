@@ -3,6 +3,8 @@ def check(a, b, c):
     return a and b and c
 
 
+
+
 #Q2:
 s = input("Enter a string: ")
 sorted_s = ''.join(sorted(s))
@@ -14,6 +16,9 @@ for ch in s:
 
 for ch in sorted(counts):
     print(ch, ":", counts[ch])
+
+
+
 
 
 #Q3
@@ -41,4 +46,248 @@ else:
     print(f"{s} is NOT a Hill Number.")
 
 
+
+
+
 #Q4
+s = input("Enter a string to sort: ")
+chars = list(s)
+n = len(chars)
+
+for i in range(n):
+    min_idx = i
+    for j in range(i + 1, n):
+        if chars[j] < chars[min_idx]:
+            min_idx = j
+    chars[i], chars[min_idx] = chars[min_idx], chars[i]
+
+print("Sorted String:", "".join(chars))
+
+
+
+
+
+
+
+#Q5
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+n = int(input("Enter position (N) for Fibonacci calculation: "))
+print(f"The {n}-th Fibonacci number is: {fibonacci(n)}")
+
+
+
+
+
+
+#Q6 
+str1 = input("Enter first string: ")
+str2 = input("Enter second string: ")
+
+s1 = str1.replace(" ", "").lower()
+s2 = str2.replace(" ", "").lower()
+
+if sorted(s1) == sorted(s2):
+    print("The strings are anagrams of each other.")
+else:
+    print("The strings are NOT anagrams.")
+
+
+
+
+
+
+
+#Q7
+n = int(input("Enter the number of terms (N): "))
+
+a, b = 0, 1
+print("Fibonacci Sequence:")
+for _ in range(n):
+    print(a, end=" ")
+    a, b = b, a + b
+print()
+
+
+
+
+
+#Q8
+s = input("Enter the string: ").strip()
+n = int(input("Enter number of equal parts (N): "))
+if n <= 0 or len(s) == 0:
+    print("Error: Invalid input or empty string.")
+elif len(s) % n != 0:
+    print(f"Error: String cannot be divided into {n} equal-length parts.")
+else:
+    part_size = len(s) // n
+    parts = [s[i : i + part_size] for i in range(0, len(s), part_size)]
+    all_same = all(part == parts[0] for part in parts)
+    
+    if all_same:
+        print(f"Success! The string can be divided into {n} identical parts:")
+        print(parts)
+    else:
+        print("Error: The sequence cannot be the same across all parts.")
+
+
+
+
+#Q9
+mode = input("Type 'e' to encrypt or 'd' to decrypt: ")
+text = input("Enter message: ")
+shift = int(input("Enter shift: "))
+
+if mode == "d":
+  shift = -shift
+result = ""
+
+for char in text:
+  if "A" <= char <= "Z":
+    result = result + chr((ord(char) - 65 + shift) % 26 + 65)
+    
+  elif "a" <= char <= "z":
+    result = result + chr((ord(char) - 97 + shift) % 26 + 97)
+    
+  else:
+    result = result + char
+
+print("Result:", result)
+
+
+
+
+
+
+#Q10
+card_number = input("Enter credit card number: ").replace(" ", "")
+
+digits = [int(d) for d in card_number if d.isdigit()]
+checksum = 0
+reverse_digits = digits[::-1]
+
+for i, digit in enumerate(reverse_digits):
+    if i % 2 == 1:
+        digit *= 2
+        if digit > 9:
+            digit -= 9
+    checksum += digit
+
+if checksum % 10 == 0 and len(digits) > 0:
+    print("Valid credit card number.")
+else:
+    print("Invalid credit card number.")
+
+
+
+
+
+
+
+
+#Q11
+text = input("Enter a text to evaluate: ").strip()
+letters = 0
+for char in text:
+    if char.isalpha():
+        letters += 1
+
+words_list = text.split()
+words = len(words_list)
+sentences = 0
+for char in text:
+    if char in [".", "!", "?"]:
+        sentences += 1
+
+if words == 0:
+    print("Please enter some text containing words.")
+else:
+    # L = Average number of letters per 100 words
+    L = (letters / words) * 100
+    S = (sentences / words) * 100
+    grade = round(0.0588 * L - 0.296 * S - 15.8)
+
+    if grade < 1:
+        print("Reading Level: Before Grade 1")
+    elif grade >= 16:
+        print("Reading Level: Grade 16+ (College level)")
+    else:
+        print(f"Reading Level: Grade {grade}")
+
+
+
+
+
+
+#12A
+n = int(input("Enter the number of rows:"))
+
+for i in range(1, n + 1): 
+    spaces = " " * (n - i)
+    stars = "* " * i
+    print(spaces + stars)
+
+for i in range(n - 1, 0, -1):  
+    spaces = " " * (n - i)
+    stars = "* " * i
+    print(spaces + stars)
+
+
+#12B
+n =  int(input("Enter the number of rows:"))
+
+for i in range(1, n + 1):
+    stars = "* " * i
+    spaces = "  " * (2 * (n - i))
+    print((stars + spaces + stars).rstrip())
+
+for i in range(n - 1, 0, -1):  
+    stars = "* " * i
+    spaces = "  " * (2 * (n - i))
+    print((stars + spaces + stars).rstrip())
+
+
+
+#Q13
+
+
+
+
+
+
+
+
+
+
+
+
+#Q14
+str = input("Enter array elements separated by spaces: ")
+arr = str.split()
+
+seen = {}
+min_idx = float('inf')
+result = None
+
+for i, elem in enumerate(arr):
+    if elem in seen:
+        if seen[elem] < min_idx:
+            min_idx = seen[elem]
+            result = elem
+    else:
+        seen[elem] = i
+
+if result is not None:
+    print(f"First repeating element: '{result}' (first seen at index {min_idx})")
+else:
+    print("No repeating elements found.")
+
+
+
+
+
