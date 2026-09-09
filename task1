@@ -291,3 +291,21 @@ else:
 
 
 
+
+
+
+
+#Q15
+n = int(input("Enter dimension N for NxN matrix: "))
+
+print(f"Enter the matrix row by row (enter {n} numbers per row separated by spaces):")
+matrix = []
+for i in range(n):
+    row = list(map(int, input("Row "+str(i + 1)+": ").split()))
+    matrix.append(row)
+
+
+
+
+
+
